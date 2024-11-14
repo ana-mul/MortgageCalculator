@@ -19,10 +19,9 @@
     <title>Frontend Mentor | Mortgage repayment calculator</title>
   </head>
   <body>
-    <div class="container">
+    <form action="" class="form-container" novalidate>
       <!-- LEFT COTAINER -->
       <div class="left-container">
-
         <div class="container-one">
           <h2>Mortgage Calculator</h2>
           <button class="clear-btn">Clear All</button>
@@ -31,26 +30,30 @@
         <div class="container-two">
           <h3>Mortgage Amount</h3>
           <div class="container-t-a">
-            <form action=""><input type="number" class="input-currency"/></form>
-            <span class="currency-span">$</span>
+            <input type="number" class="input-currency input-error" />
+            <span class="currency-span span-error">$</span>
           </div>
           <h3 class="error-msg">This field is requiered</h3>
         </div>
-        
+
         <div class="container-three">
           <div class="container-th-a">
             <h3>Mortgage Term</h3>
             <div class="container-th-a-a">
-              <form action=""><input type="number" name="" id="" class="input-years" /></form>
-              <span class="years-span">years</span>
+              <input type="number" name="" class="input-years input-error" />
+              <span class="years-span span-error">years</span>
             </div>
             <h3 class="error-msg">This field is requiered</h3>
           </div>
           <div class="container-th-b">
             <h3>Interest Rate</h3>
             <div class="container-th-b-a">
-              <form action=""><input type="number" name="" id=""  class="input-percentage"/></form>
-              <span class="percentage-span">%</span>
+              <input
+                type="number"
+                name=""
+                class="input-percentage input-error"
+              />
+              <span class="percentage-span span-error">%</span>
             </div>
             <h3 class="error-msg">This field is requiered</h3>
           </div>
@@ -59,15 +62,30 @@
         <div class="container-four">
           <h3>Mortgage Type</h3>
           <div class="cont-option">
-            <label class="option"><input type="radio" class="input-radio"  name="mort-type"/>Repayment</label
-            ><label class="option"><input type="radio" class="input-radio" name="mort-type" />Interest Only</label>
+            <label class="option"
+              ><input
+                type="radio"
+                class="input-radio input-error"
+                name="mort-type"
+                required
+              />Repayment</label
+            ><label class="option"
+              ><input
+                type="radio"
+                class="input-radio input-error"
+                name="mort-type"
+                required
+              />Interest Only</label
+            >
           </div>
-          <h3 class="error-msg">This field is requiered</h3>
+          <h3 class="error-msg-radio">This field is requiered</h3>
         </div>
 
         <div class="container-five">
-          <img src="assets/images/icon-calculator.svg" alt="">
-          <button class="calculate-btn">Calculate Repayments</button>
+          <img src="assets/images/icon-calculator.svg" alt="" />
+          <button class="calculate-btn" type="submit">
+            Calculate Repayments
+          </button>
         </div>
       </div>
 
@@ -80,8 +98,24 @@
           monthly repayments would be
         </p>
       </div>
-    </div>
-
+      
+      <!-- HIDE CONTAINER -->
+      <div class="right-container-hide">
+        <h2 class="h2-hide">Your results</h2>
+        <p class="p-hide">
+          Your results are shown below based on the information you provided. To
+          adjust the results, edit the form and click "calculate repayments"
+          again.
+        </p>
+        <div class="container-hide">
+          <h3 class="h3-hide">Your monthly repayments</h3>
+          <span class="result-a">$1.7927,74</span>
+          <span class="divisor"></span>
+          <h3 class="h3-hide">Total you'll repay over the term</h3>
+          <span class="result-b">$539.322,94</span>
+        </div>
+      </div>
+    </form>
     <!-- FOOTER -->
     <footer>
       <div class="attribution">
