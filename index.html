@@ -24,13 +24,13 @@
       <div class="left-container">
         <div class="container-one">
           <h2>Mortgage Calculator</h2>
-          <button class="clear-btn">Clear All</button>
+          <button class="clear-btn" type="button">Clear All</button>
         </div>
 
         <div class="container-two">
           <h3>Mortgage Amount</h3>
           <div class="container-t-a">
-            <input type="number" class="input-currency input-error" />
+            <input type="number" class="input-currency input-error" id="amount" />
             <span class="currency-span span-error">$</span>
           </div>
           <h3 class="error-msg">This field is requiered</h3>
@@ -40,7 +40,7 @@
           <div class="container-th-a">
             <h3>Mortgage Term</h3>
             <div class="container-th-a-a">
-              <input type="number" name="" class="input-years input-error" />
+              <input type="number" name="" class="input-years input-error"  id="term"/>
               <span class="years-span span-error">years</span>
             </div>
             <h3 class="error-msg">This field is requiered</h3>
@@ -52,6 +52,7 @@
                 type="number"
                 name=""
                 class="input-percentage input-error"
+                id="interest-rate"
               />
               <span class="percentage-span span-error">%</span>
             </div>
@@ -66,6 +67,7 @@
               ><input
                 type="radio"
                 class="input-radio input-error"
+                id="repayment"
                 name="mort-type"
                 required
               />Repayment</label
@@ -73,6 +75,7 @@
               ><input
                 type="radio"
                 class="input-radio input-error"
+                id="interest-only"
                 name="mort-type"
                 required
               />Interest Only</label
@@ -109,10 +112,10 @@
         </p>
         <div class="container-hide">
           <h3 class="h3-hide">Your monthly repayments</h3>
-          <span class="result-a">$1.7927,74</span>
+          <span class="result-a"></span>
           <span class="divisor"></span>
           <h3 class="h3-hide">Total you'll repay over the term</h3>
-          <span class="result-b">$539.322,94</span>
+          <span class="result-b"></span>
         </div>
       </div>
     </form>

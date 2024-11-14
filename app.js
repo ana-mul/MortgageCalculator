@@ -40,11 +40,21 @@ labelOption.forEach((label) => {
   });
 });
 
+//CLEAR
+
+const clearBtn = document.querySelector(".clear-btn");
+
+clearBtn.addEventListener("click", () => {
+  inputError.forEach((input) => {
+    input.value = "";
+  });
+});
+
 //ERROR STATES
 
 const errorMsg = document.querySelectorAll(".error-msg");
-const containerInputE = document.querySelectorAll('.input-error');
-const errorSpan = document.querySelectorAll('.span-error');
+const containerInputE = document.querySelectorAll(".input-error");
+const errorSpan = document.querySelectorAll(".span-error");
 const inputError = document.querySelectorAll(".input-error");
 const form = document.querySelector(".form-container");
 
@@ -52,30 +62,66 @@ const checkInput = () => {
   let formValid = true;
 
   inputError.forEach((inputEmpty, index) => {
-    if (inputEmpty.type !== 'radio') {
-      if (inputEmpty.value ===''){
+    if (inputEmpty.type !== "radio") {
+      if (inputEmpty.value === "") {
         errorMsg[index].style.display = "block";
-        containerInputE[index].style.border = '1px solid hsl(4, 69%, 50%)';
-        errorSpan[index].style.backgroundColor = 'hsl(4, 69%, 50%)';
-        errorSpan[index].style.color = 'hsl(0, 0%, 100%)';
-        errorSpan[index].style.height = '30px';
+        containerInputE[index].style.border = "1px solid hsl(4, 69%, 50%)";
+        errorSpan[index].style.backgroundColor = "hsl(4, 69%, 50%)";
+        errorSpan[index].style.color = "hsl(0, 0%, 100%)";
+        errorSpan[index].style.height = "30px";
         formValid = false;
       } else {
         errorMsg[index].style.display = "none";
-        containerInputE[index].style.border = '1px solid hsl(200, 26%, 54%)';
-        errorSpan[index].style.backgroundColor = 'hsl(202, 86%, 94%)';
-        errorSpan[index].style.color = 'hsl(200, 24%, 40%)';
-        errorSpan[index].style.height = '28px';
+        containerInputE[index].style.border = "1px solid hsl(200, 26%, 54%)";
+        errorSpan[index].style.backgroundColor = "hsl(202, 86%, 94%)";
+        errorSpan[index].style.color = "hsl(200, 24%, 40%)";
+        errorSpan[index].style.height = "28px";
       }
-  }});
+    }
+  });
   return formValid;
 };
 
+//CALCULATE
+
+const monthlySpan = document.querySelector(".result-a");
+const totalSpan = document.querySelector(".result-b");
+const interestOnly = document.getElementById("interest-only");
+const repayment = document.getElementById("repayment");
+const amountInput = document.getElementById("amount");
+const termInput = document.getElementById("term");
+const interestRateInput = document.getElementById("interest-rate");
+const containerResult = document.querySelector(".right-container-hide");
+const containerShow = document.querySelector(".right-container");
+
+const calculateInterest = () => {
+  //aca convierto los valores del input en numero
+  const amount = Number(amountInput.value);
+  const term = Number(termInput.value);
+  const interestRate = Number(interestRateInput.value) / 100;
+
+  let monthlyInterest = interestRate / 12;
+  let totalMonth = term * 12;
+  let monthPayment = amount * monthlyInterest;
+  let totalPayment = monthPayment * totalMonth;
+
+  //muestro resultados
+  monthlySpan.textContent = `$ ${monthPayment.toFixed(2)}`;
+  totalSpan.textContent = `$ ${totalPayment.toFixed(2)}`;
+
+  //cambiar el display de los contenedores
+  containerShow.style.display = "none";
+  containerResult.style.display = "flex";
+
+  return { monthPayment, totalPayment };
+};
+
+
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  checkInput();
+  if (checkInput()){
+    const resultInterest = calculateInterest();
+  }
 });
-
-//RESULT
-
 
