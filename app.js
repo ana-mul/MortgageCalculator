@@ -100,10 +100,15 @@ const calculateInterest = () => {
   const term = Number(termInput.value);
   const interestRate = Number(interestRateInput.value) / 100;
 
+  //calculo interes
   let monthlyInterest = interestRate / 12;
   let totalMonth = term * 12;
   let monthPayment = amount * monthlyInterest;
   let totalPayment = monthPayment * totalMonth;
+
+  //cambiar h3
+  document.getElementById("h3-hide-a").textContent = "Your Monthly Interest";
+  document.getElementById("h3-hide-b").textContent = "Total Interest Paid Over Term";
 
   //muestro resultados
   monthlySpan.textContent = `$ ${monthPayment.toFixed(2)}`;
@@ -116,12 +121,42 @@ const calculateInterest = () => {
   return { monthPayment, totalPayment };
 };
 
+const calculateRepayment = () => {
+  //convierto valores
+  const amount = Number(amountInput.value);
+  const term = Number(termInput.value);
+  const interestRate = Number(interestRateInput.value) / 100;
 
+  //calculo repayment
+  let totalMonth = term * 12;
+  let monthlyPayment = (amount * interestRate)*((1 + interestRate) ** totalMonth) / ((1 + interestRate) ** totalMonth -1);
+  let totalRepayment = monthlyPayment * totalMonth;
+
+  //muestro resultados
+  monthlySpan.textContent = `$ ${monthlyPayment.toFixed(2)}`;
+  totalSpan.textContent = `$ ${totalRepayment.toFixed(2)}`;
+
+  //cambiar display
+  containerShow.style.display = 'none';
+  containerResult.style.display = 'flex';
+  console.log (monthlyPayment, totalRepayment);
+
+  return (monthlyPayment, totalRepayment);
+
+}
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  if (checkInput()){
+
+  const isSelectedInterest =  document.querySelector('input[id="interest-only"]:checked');
+  const isSelectedRepayment = document.querySelector('input[id="repayment"]:checked');
+
+  if (isSelectedInterest && checkInput()){
     const resultInterest = calculateInterest();
+  } else if (isSelectedRepayment && checkInput) {
+    const resultRepayment = calculateRepayment();
   }
 });
+
+
 
