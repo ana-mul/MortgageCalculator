@@ -132,6 +132,9 @@ const calculateRepayment = () => {
   let monthlyPayment = (amount * interestRate)*((1 + interestRate) ** totalMonth) / ((1 + interestRate) ** totalMonth -1);
   let totalRepayment = monthlyPayment * totalMonth;
 
+  document.getElementById("h3-hide-a").textContent = "Your Monthly Repayments";
+  document.getElementById("h3-hide-b").textContent = "Total You'll Repay Over The Term";
+
   //muestro resultados
   monthlySpan.textContent = `$ ${monthlyPayment.toFixed(2)}`;
   totalSpan.textContent = `$ ${totalRepayment.toFixed(2)}`;
@@ -139,7 +142,7 @@ const calculateRepayment = () => {
   //cambiar display
   containerShow.style.display = 'none';
   containerResult.style.display = 'flex';
-  console.log (monthlyPayment, totalRepayment);
+
 
   return (monthlyPayment, totalRepayment);
 
